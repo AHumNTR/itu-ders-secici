@@ -80,8 +80,6 @@ if __name__ == "__main__":
         SPAM_DUR = 10
 
     # Don't bother asking for shutdown if in test mode.
-    shutdown_on_complete = input("Ders seçimi tamamlandıktan sonra bilgisayar kapatılsın mı? (e/h): ").lower() == "e" if not test_mode else False
-    Logger.log(f"Ders seçim tamamlandıktan sonra bilgisayar {'kapatılacak' if shutdown_on_complete else 'kapatılmayacak'}.")
 
     # Read input files
     login, password, crn_list, scrn_list, start_time = read_inputs(test_mode)
@@ -172,12 +170,6 @@ if __name__ == "__main__":
         Logger.log(f"Ders seçimi zaman aşımından dolayı sonlandırıldı. Alınamayan dersler: {crn_list}, Bırakılamayan Dersler {scrn_list}.")
 
     # Turn off the computer, if asked for it, else, just exit.
-    if shutdown_on_complete:
-        sleep(5)
-        DriverManager.clear_drivers()
-        Logger.log("Ders seçimi tamamlandı. Bilgisayar kapatılıyor...")
-        os.system("shutdown /s /t 1")
-    else:
-        Logger.log("Ders seçimi tamamlandı. Program sonlandırılıyor...")
-        Logger.log("Program işinize yaradıysa GitHub'dan yıldız atmayı unutmayın ⭐")
-        exit()
+    Logger.log("Ders seçimi tamamlandı. Program sonlandırılıyor...")
+    Logger.log("Program işinize yaradıysa GitHub'dan yıldız atmayı unutmayın ⭐")
+    exit()
