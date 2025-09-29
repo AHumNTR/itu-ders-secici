@@ -124,7 +124,10 @@ if __name__ == "__main__":
             break
 
     # Wait untill the registration starts. (Add a buffer to prevent any possible errors.)
-    token_fetcher.driver.minimize_window()
+    try:
+        token_fetcher.driver.minimize_window()#can cause crashes on systems using wayland and similar desktop managers since they dont support minimizing
+    except:
+        print("Can't minimize window")
     Logger.log("Ders seçimine kadar bekleniliyor (Chrome penceresini kapatmayın)...")
     
     request_manager = RequestManager(token, COURSE_SELECTION_URL, COURSE_TIME_CHECK_URL)
